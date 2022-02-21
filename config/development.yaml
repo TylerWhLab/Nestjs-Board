@@ -1,0 +1,9 @@
+db: 
+  host: 'localhost'
+  username: 'postgres'
+  password: 'postgres'
+  synchronize: true # true : 시작할때마다 entity 삭제후 재생성
+
+
+jwt: 
+  secret: 'Secret123'

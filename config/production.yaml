@@ -1,0 +1,2 @@
+db: 
+  synchronize: false # false : 시작할때마다 entity 삭제하지 않음
