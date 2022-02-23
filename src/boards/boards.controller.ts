@@ -11,6 +11,10 @@ import { User } from 'src/auth/user.entity';
 
 @Controller('boards') // end point가 boards => 127.0.0.1:5555/boards/
 @UseGuards(AuthGuard()) // 모든 핸들러에 인증 적용
+/* AuthGuard() 는 @nestjs/passport 에서 가져온 것으로 2가지 기능 존재
+    1. 토큰이 변조되면 401 error return 
+    2. req 안에 user 정보를 넣을 수 있다.(jwt.stategy.ts에서 return user 했기 때문)
+*/
 export class BoardsController {
 
     private logger = new Logger('BoardController'); // 'BoardController'는 로그 상단에 찍을 내용
@@ -21,7 +25,7 @@ export class BoardsController {
     // BoardsController 안에서만 사용하기 위해 private로 지정
     
     // 게시물 전체 SELECT
-    @Get() // 컨트롤러 데코레이터에 boards가 있으므로 127.0.0.1:5555/boards/ request에 대한 handler
+    @Get() // '/'와 동일, 컨트롤러 데코레이터에 boards가 있으므로 127.0.0.1:5555/boards/ request에 대한 handler
     getAllBoard(): Promise<Board[]> { // 핸들러, return type은 boards.model.ts
         return this.boardsService.getAllBoards();
     }

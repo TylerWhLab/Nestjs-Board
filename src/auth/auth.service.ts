@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
 import { UserRepository } from './user.repository';
@@ -7,6 +7,8 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
+
+    private logger = new Logger('AuthService');
 
     constructor(
         // DI
@@ -17,7 +19,8 @@ export class AuthService {
 
     // 회원가입
     async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
-        return this.userRepository.createUser(authCredentialsDto);
+        this.logger.debug(`서비스`);
+        return await this.userRepository.createUser(authCredentialsDto);
     }
 
     // 로그인

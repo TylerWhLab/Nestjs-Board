@@ -1,10 +1,17 @@
 server: 
   port: 5555 # 백엔드 포트
-  
-db: 
-  type: 'postgres'
-  port: 5432
-  database: 'board'
+
+# PostgreSQL
+# db: 
+#   type: 'postgres'
+#   port: 5432
+#   database: 'board_db'
+
+# MySQL
+db:
+  type: 'mysql'
+  port: 3306
+  database: 'board_db'
 
 jwt:
   expiresIn: 3600 # jwt 토큰 만료 시간(1시간)

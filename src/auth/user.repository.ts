@@ -20,7 +20,7 @@ export class UserRepository extends Repository<User> {
             await this.save(user);
         } catch (error) {
             if(error.code === '23505') { // entity의 @Unique(['username']) 코드에 의한 에러코드가 23505
-                throw new ConflictException('Existing username');
+                throw new ConflictException('Existing username'); // Response에 json으로 에러 메시지 넣음
             } else {
                 throw new InternalServerErrorException();
             }

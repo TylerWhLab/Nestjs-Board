@@ -1,14 +1,20 @@
-import { Body, Controller, Post, UseGuards, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Logger, Post, Res, UseGuards, ValidationPipe } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
+
+    private logger = new Logger('AuthController'); // 'AuthController'는 로그 상단에 찍을 내용
+
     constructor( private authService: AuthService ){} // DI
 
+    // 회원가입
     @Post('/signup')
-    signUp(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<void> { // ValidationPipe : 핸들러가 실행되기 이전에 dto에 설정한 validation check 수행
+    signUp(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<void> {
+        // ValidationPipe : 핸들러가 실행되기 이전에 dto에 설정한 validation check 수행
+        this.logger.debug(`회원가입`);
         return this.authService.signUp(authCredentialsDto);
     }
 
