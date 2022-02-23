@@ -10,11 +10,7 @@ db:
   host: '192.168.0.8'
   username: 'board_user'
   password: 'board1234'
-  # entities: [user, board]
-  entities: ['dist/**/*.entity{.ts,.js}']
   synchronize: true # true : 시작할때마다 entity 삭제후 재생성
-  # autoLoadEntities: true
-
 
 jwt: 
   secret: 'Secret123'
